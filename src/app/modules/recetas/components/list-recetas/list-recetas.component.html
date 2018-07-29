@@ -1,0 +1,63 @@
+<mat-card *ngFor="let rec of recetas">
+    <mat-card-header>
+        <mat-card-title>
+            <h3>{{rec.titulo}}</h3>
+        </mat-card-title>
+        <mat-card-subtitle>{{rec.tipo}} <i class="far fa-clock"></i> {{rec.tiempo}}'</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+
+        <!-- <div style="display: block">
+            <canvas baseChart [data]="[rec.hidratos, rec.proteinas, rec.lipidos, rec.vegetales, rec.frutas]" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" [colors]="colores"></canvas>
+        </div> -->
+
+
+
+
+
+    </mat-card-content>
+    <mat-card-actions style="display: flex; flex-direction: column" #chart>
+        <div style="align-self: center; flex-grow: 1; height: 40px; width: 90%">
+            <ngx-charts-bar-horizontal-normalized [results]="[
+            {
+              'series': [
+                {
+                  'name': 'Hidratos',
+                  'value': rec.hidratos
+                },
+                {
+                  'name': 'Proteínas',
+                  'value': rec.proteinas
+                },
+                {
+                  'name': 'Lípidos',
+                  'value': rec.lipidos
+                },
+                {
+                  'name': 'Vegetables',
+                  'value': rec.vegetales
+                },
+                {
+                  'name': 'Frutas',
+                  'value': rec.frutas
+                }
+              ]
+            }
+          ]">
+            </ngx-charts-bar-horizontal-normalized>
+        </div>
+        <div>
+            <button mat-mini-fab [ngClass]="{'megusta': meGusta, 'no-megusta': !meGusta}" (click)="meGusta = !meGusta">
+                <i class="fas fa-heart"></i>
+            </button>
+            <button mat-icon-button style="margin-left: 10px; color: rgba(17, 130, 138, 0.836)">
+                <i class="fas fa-pencil-alt"></i>
+            </button>
+            <button mat-icon-button style="margin-left: 10px; color: rgba(172, 16, 16, 0.938)">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+
+    </mat-card-actions>
+</mat-card>
