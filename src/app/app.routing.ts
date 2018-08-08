@@ -1,15 +1,19 @@
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './shared/components/home/home.component';
 import { ListRecetasComponent } from './modules/recetas/components/list-recetas/list-recetas.component';
-import { NewRecetaComponent } from './modules/recetas/components/new-receta/new-receta.component';
+import { RecetaComponent } from './modules/recetas/components/receta/receta.component';
+import { BuscarRecetasComponent } from './modules/recetas/components/buscar-recetas/buscar-recetas.component';
+import { MenuSemanaComponent } from './modules/menu-semana/components/menu-semana/menu-semana.component';
 
 const ROUTES: Routes = [
-    { path: '', component: HomeComponent },
+    { path: '', component: ListRecetasComponent },
     { path: 'home', component: HomeComponent },
+    { path: 'buscar-recetas/:busqueda/:ingredientes', component: BuscarRecetasComponent },
     { path: 'recetas', component: ListRecetasComponent  },
-    { path: 'nueva-receta', component: NewRecetaComponent  },
-    { path: '', pathMatch: 'full', redirectTo: 'home' },
-    { path: '**', pathMatch: 'full', redirectTo: 'home' }
+    { path: 'receta/:id', component: RecetaComponent  },
+    { path: 'menu-semama', component: MenuSemanaComponent  },
+    { path: '', pathMatch: 'full', redirectTo: 'recetas' },
+    { path: '**', pathMatch: 'full', redirectTo: 'recetas' }
 
 
 ];

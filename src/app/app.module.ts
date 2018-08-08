@@ -7,6 +7,7 @@ import { MaterialModule } from './shared/material/material.module';
 import { HomeComponent } from './shared/components/home/home.component';
 import { APP_ROUTING } from './app.routing';
 import { RecetasModule } from './modules/recetas/recetas.module';
+import { MenuSemanaModule } from './modules/menu-semana/menu-semana.module';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { RecetasModule } from './modules/recetas/recetas.module';
     MaterialModule,
     BrowserAnimationsModule,
     APP_ROUTING,
-    RecetasModule
+    RecetasModule,
+    MenuSemanaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

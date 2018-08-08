@@ -1,8 +1,8 @@
-<h1>Nueva Receta</h1>
+<h1>{{titulo}}</h1>
 <hr>
 <form [formGroup]="form" (ngSubmit)="guardarCambios()" novalidate>
     <div class="example-container">
-        <mat-form-field>
+        <mat-form-field style="width: 200px">
             <input matInput placeholder="Título Receta" formControlName="titulo">
             <!-- <mat-error *ngIf="form.get('titulo').invalid">El título es necesario</mat-error> -->
         </mat-form-field>
@@ -18,27 +18,30 @@
         </mat-form-field>
         <div>
             <mat-form-field>
-                <input matInput placeholder="Ingredientes" formControlName="ingrediente">
+                <input matInput placeholder="Nuevo ingrediente" formControlName="ingrediente">
 
             </mat-form-field>
 
             <button type="button" mat-icon-button (click)="addIngrediente(form.get('ingrediente').value)">
             <i class="fas fa-plus"></i>
             </button>
+            <button type="button" mat-icon-button (click)="quitarIngredientes(ListaIngredientes.selectedOptions)">
+                <i class="fas fa-backspace"></i>
+            </button>
         </div>
 
-        <mat-selection-list>
+        <mat-selection-list #ListaIngredientes>
             <mat-list-option *ngFor="let ing of Ingredientes">
                 {{ing}}
             </mat-list-option>
         </mat-selection-list>
 
-        <mat-form-field>
-            <textarea matInput placeholder="Instrucciones" formControlName="instrucciones"></textarea>
+        <mat-form-field class="textarea">
+            <textarea matInput matAutosize matAutosizeMinRows="4" placeholder="Instrucciones" formControlName="instrucciones"></textarea>
         </mat-form-field>
 
-        <mat-form-field>
-            <textarea matInput placeholder="Consejos" formControlName="consejos"></textarea>
+        <mat-form-field class="textarea">
+            <textarea matInput matAutosize matAutosizeMinRows="2" placeholder="Consejos" formControlName="consejos"></textarea>
         </mat-form-field>
 
         <mat-form-field class="example-chip-list" class="block">
@@ -52,23 +55,23 @@
         </mat-form-field>
 
         <div>
-            <mat-form-field floatLabel="always" style="width: 80px; margin-left: 5px; text-align: right">
+            <mat-form-field floatLabel="always" class="nutriente">
                 <input matInput type="number" placeholder="Hidratos" formControlName="hidratos">
                 <span matSuffix>%</span>
             </mat-form-field>
-            <mat-form-field floatLabel="always" style="width: 80px; margin-left: 5px; text-align: right">
+            <mat-form-field floatLabel="always" class="nutriente">
                 <input matInput type="number" placeholder="Proteínas" formControlName="proteinas">
                 <span matSuffix>%</span>
             </mat-form-field>
-            <mat-form-field floatLabel="always" style="width: 80px; margin-left: 5px; text-align: right">
-                <input matInput type="number" placeholder="Vegetables" formControlName="vegetables">
+            <mat-form-field floatLabel="always" class="nutriente">
+                <input matInput type="number" placeholder="Vegetales" formControlName="vegetales">
                 <span matSuffix>%</span>
             </mat-form-field>
-            <mat-form-field floatLabel="always" style="width: 80px; margin-left: 5px; text-align: right">
+            <mat-form-field floatLabel="always" class="nutriente">
                 <input matInput type="number" placeholder="Frutas" formControlName="frutas">
                 <span matSuffix>%</span>
             </mat-form-field>
-            <mat-form-field floatLabel="always" style="width: 80px; margin-left: 5px; text-align: right">
+            <mat-form-field floatLabel="always" class="nutriente">
                 <input matInput type="number" placeholder="Lípidos" formControlName="lipidos">
                 <span matSuffix>%</span>
             </mat-form-field>

@@ -1,7 +1,24 @@
-<div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
+<div class="example-container" [class.example-is-mobile]="mobileQuery.matches" (click)="ocultarMeanuAuxiliar($event)">
     <mat-toolbar color="primary" class="example-toolbar">
-        <button mat-icon-button (click)="snav.toggle()"><i class="fas fa-bars"></i></button>
+        <button mat-icon-button (click)="snav.toggle()" class="icono"><i class="fas fa-bars"></i></button>
         <h1 class="example-app-name" [routerLink]="[ '/home' ]">Recetas App</h1>
+        <div *ngIf="mobileQuery.matches">
+            <button mat-button class="icono" id="btnBuscar"> 
+                <i class="fas fa-search" ></i>
+            </button>
+            <mat-list class="menuAux" *ngIf="menuAuxiliar" id="Auxiliar">
+                <mat-list-item>
+                    <input type="text" #buscar2 placeholder="Buscar" (keyup.enter)="buscarRecetas(buscar2.value, ingredientes.checked); buscar2.value=''; menuAuxiliar = !menuAuxiliar">
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-checkbox #ingredientes color="primary">Ingredientes</mat-checkbox>
+                </mat-list-item>
+            </mat-list>
+        </div>
+        <div *ngIf="!mobileQuery.matches" class="buscar">
+            <input type="text" id="buscar" #buscar placeholder="Buscar" (keyup.enter)="buscarRecetas(buscar.value, ingredientes2.checked); buscar.value=''">
+            <mat-checkbox #ingredientes2 color="warn">Ingredientes</mat-checkbox>
+        </div>
     </mat-toolbar>
 
     <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
@@ -19,7 +36,7 @@
                         <a mat-list-item [routerLink]="[ '/recetas' ]" routerLinkActive="active" (click)="ocultarMenu(snav)">
                             <i class="fas fa-list-ul"></i><span class="margen-left">Listado</span>
                         </a>
-                        <a mat-list-item [routerLink]="[ '/nueva-receta' ]" routerLinkActive="active" (click)="ocultarMenu(snav)">
+                        <a mat-list-item [routerLink]="[ '/receta/nueva' ]" routerLinkActive="active" (click)="ocultarMenu(snav)">
                             <i class="far fa-plus-square"></i><span class="margen-left">Nueva</span>
                         </a>
 
@@ -30,7 +47,7 @@
                                 Menú Semana
                             </mat-panel-title>
                         </mat-expansion-panel-header>
-                        <a mat-list-item>Menú</a>
+                        <a mat-list-item [routerLink]="[ '/menu-semama' ]" routerLinkActive="active" (click)="ocultarMenu(snav)">Menú</a>
                     </mat-expansion-panel>
                 </mat-accordion>
             </mat-nav-list>

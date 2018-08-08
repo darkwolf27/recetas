@@ -1,37 +1,23 @@
-import { Component, OnInit, ViewChild, Renderer2, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Receta } from '../../interfaces/receta.interface';
 import { RecetaService } from '../../services/receta.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-list-recetas',
   templateUrl: './list-recetas.component.html',
-  styleUrls: ['./list-recetas.component.css']
+  styleUrls: ['./list-recetas.component.scss']
 })
 export class ListRecetasComponent implements OnInit {
   recetas: Receta[] = [];
   TotalRecetas: number;
-
-  public colores = [
-    {backgroundColor: ['orange', 'blue', 'yellow', 'green', 'pink']}
-  ];
-
-  viewChart = [250, 50];
-
-  
-
-  public doughnutChartLabels: string[] = ['Hidratos', 'Proteínas', 'Lípidos', 'Vegetales', 'Frutas'];
-  public doughnutChartData: number[] = [];
-  public doughnutChartType = 'doughnut';
-
   meGusta: boolean;
-  
+  personaMenu: string;
 
   constructor(
     private recetaSV: RecetaService,
-    private renderer: Renderer2
+    public modal: MatDialog
   ) { }
-
-  
 
   ngOnInit() {
     this.recetaSV.getRecetas()
@@ -41,6 +27,47 @@ export class ListRecetasComponent implements OnInit {
       });
   }
 
+  EliminarReceta(id) {
+    this.recetaSV.deleteReceta(id)
+      .subscribe(() => {
+        this.ngOnInit();
+      });
+  }
+
+  cambioFavorito(index, id, favorito: boolean) {
+    this.recetas[index].favorito = favorito;
+    this.recetaSV.favoritoReceta(id, favorito)
+      .subscribe();
+  }
+
+  openModalAddMenu(id) {
+    const modalRef = this.modal.open(ModalRecetaAddenu, {
+      data: {persona: this.personaMenu}
+    });
+
+    modalRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      if (result) {
+        console.log('paso por aquí');
+        this.recetaSV.menuReceta(id, true, result).subscribe();
+      }
+    });
+  }
 
 
+}
+
+@Component({
+  selector: 'app-modal-receta-add-menu',
+  templateUrl: '../../modals/receta-add-menu.modal.html'
+})
+// tslint:disable-next-line:component-class-suffix
+export class ModalRecetaAddenu {
+  constructor(
+    public dialogRef: MatDialogRef<ModalRecetaAddenu>,
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

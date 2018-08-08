@@ -1,0 +1,16 @@
+.block {
+    display: block;
+}
+
+.nutriente {
+    width: 80px;
+    text-align: right
+}
+
+mat-form-field {
+    margin-left: 5px;
+}
+
+.textarea {
+    width: 100%;
+}

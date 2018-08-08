@@ -1,0 +1,21 @@
+<h2 mat-dialog-title>Añadir al menú</h2>
+<mat-dialog-content class="mat-typography">
+
+    <p>
+        Para añadir esta receta al menú semanal deberá seleccionar la persona a quien corresponde la receta.
+    </p>
+
+    <div>
+        <mat-radio-group #persona [(ngModel)]="data.persona" tabindex="1">
+            <mat-radio-button color="primary" style="display: block; margin-top: 5px" value="Ricardo">Ricardo</mat-radio-button>
+            <mat-radio-button color="primary" style="display: block; margin-top: 5px" value="Aldara">Aldara</mat-radio-button>
+            <mat-radio-button color="primary" style="display: block; margin-top: 5px" value="Ambos">Ambos</mat-radio-button>
+        </mat-radio-group>
+
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="data.persona" tabindex="2" cdkFocusInitial>Añadir</button>
+</mat-dialog-actions>

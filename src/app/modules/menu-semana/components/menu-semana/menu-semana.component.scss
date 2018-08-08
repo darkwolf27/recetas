@@ -1,0 +1,37 @@
+.marginTop {
+    margin: 10px;
+}
+
+.no-megusta {
+    margin-left: 10px;
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0)
+}
+
+.megusta {
+    margin-left: 10px;
+    background: rgb(241, 64, 93);
+    color: white;
+}
+
+mat-radio-button {
+    display: block;
+    margin-top: 5px;
+}
+
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+    button {
+        align-self: center;
+        font-size: 1.5em;
+        color: rgb(82, 82, 82);
+        padding: 0;
+        width: 50px;
+    }
+}
+
+.seleccionado {
+    text-decoration: line-through;
+    color: grey;
+}

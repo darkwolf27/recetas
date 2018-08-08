@@ -6,6 +6,8 @@ export interface Receta {
     tipo: string;
     consejos?: string;
     favorito?: boolean;
+    menu?: boolean;
+    menuPersona?: string;
     etiquetas?: string[];
     img?: string;
     hidratos?: number;
@@ -15,4 +17,5 @@ export interface Receta {
     lipidos?: number;
     fechaSubida?: Date;
     estado?: boolean;
+    _id?: string;
 }
